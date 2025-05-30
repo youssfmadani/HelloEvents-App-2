@@ -1,0 +1,35 @@
+<div class="about-container">
+  <section class="hero">
+    <h1>About HelloEvents</h1>
+    <p>Your trusted platform for discovering and booking amazing events</p>
+  </section>
+
+  <section class="values">
+    <h2>Our Values</h2>
+    <div class="values-grid">
+      <mat-card *ngFor="let value of companyValues">
+        <mat-card-header>
+          <mat-card-title>{{value.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{value.description}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <section class="team">
+    <h2>Our Team</h2>
+    <div class="team-grid">
+      <mat-card *ngFor="let member of teamMembers">
+        <mat-card-header>
+          <mat-card-title>{{member.name}}</mat-card-title>
+          <mat-card-subtitle>{{member.role}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{member.description}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+</div>
