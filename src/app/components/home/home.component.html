@@ -1,0 +1,24 @@
+<div class="home-container">
+  <section class="hero">
+    <h1>Welcome to HelloEvents</h1>
+    <p>Discover and book amazing events in your area</p>
+  </section>
+
+  <section class="events-grid">
+    <mat-card *ngFor="let event of events" class="event-card">
+      <mat-card-header>
+        <mat-card-title>{{event.title}}</mat-card-title>
+        <mat-card-subtitle>{{event.location}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Date: {{event.date | date}}</p>
+        <p>Price: {{event.price | currency}}</p>
+        <p>Available Seats: {{event.availableSeats}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button [routerLink]="['/events', event.id]">VIEW DETAILS</button>
+        <button mat-raised-button color="primary">BOOK NOW</button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+</div>

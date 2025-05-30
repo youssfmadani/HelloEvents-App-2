@@ -1,0 +1,103 @@
+<div class="navbar">
+  <mat-toolbar color="primary">
+    <!-- Logo -->
+    <a mat-button [routerLink]="isAdmin ? '/admin/dashboard' : '/client/dashboard'" class="brand">
+      <mat-icon>event</mat-icon>
+      <span>HelloEvents</span>
+    </a>
+
+    <span class="spacer"></span>
+
+    <!-- Admin Navigation -->
+    <ng-container *ngIf="isAdmin">
+      <a mat-button routerLink="/admin/dashboard" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a mat-button routerLink="/admin/events" routerLinkActive="active">
+        <mat-icon>event_note</mat-icon>
+        <span>Events</span>
+      </a>
+      <a mat-button routerLink="/admin/events/create" routerLinkActive="active">
+        <mat-icon>add_circle</mat-icon>
+        <span>Create Event</span>
+      </a>
+    </ng-container>
+
+    <!-- Client Navigation -->
+    <ng-container *ngIf="!isAdmin">
+      <a mat-button routerLink="/client/dashboard" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a mat-button routerLink="/client/events" routerLinkActive="active">
+        <mat-icon>event_note</mat-icon>
+        <span>My Events</span>
+      </a>
+    </ng-container>
+
+    <!-- User Menu -->
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      <mat-icon>account_circle</mat-icon>
+      <span>{{ username }}</span>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <a mat-menu-item [routerLink]="isAdmin ? '/admin/profile' : '/client/profile'">
+        <mat-icon>person</mat-icon>
+        <span>My Profile</span>
+      </a>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</div>
+
+<style>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+mat-toolbar {
+  padding: 0 16px;
+}
+
+@media (max-width: 768px) {
+  mat-toolbar {
+    padding: 0 8px;
+  }
+  
+  .brand span,
+  a span {
+    display: none;
+  }
+  
+  mat-toolbar a {
+    min-width: 40px;
+  }
+}
+</style>

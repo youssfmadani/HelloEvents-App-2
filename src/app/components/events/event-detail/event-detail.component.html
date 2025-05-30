@@ -1,0 +1,38 @@
+<div class="event-detail-container" *ngIf="event">
+  <mat-card class="event-card">
+    <mat-card-header>
+      <mat-card-title>{{event.title}}</mat-card-title>
+      <mat-card-subtitle>{{event.location}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="event-info">
+        <p><strong>Date:</strong> {{event.date | date:'full'}}</p>
+        <p><strong>Price:</strong> {{event.price | currency}}</p>
+        <p><strong>Available Seats:</strong> {{event.availableSeats}}</p>
+        <p><strong>Organizer:</strong> {{event.creatorUsername}}</p>
+      </div>
+
+      <div class="booking-section" *ngIf="isAuthenticated$ | async">
+        <mat-form-field appearance="outline">
+          <mat-label>Number of Tickets</mat-label>
+          <input matInput type="number" [(ngModel)]="numberOfTickets" min="1" [max]="event.availableSeats">
+          <mat-hint>Maximum available: {{event.availableSeats}}</mat-hint>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="bookEvent()" 
+                [disabled]="numberOfTickets < 1 || numberOfTickets > event.availableSeats">
+          Book Now
+        </button>
+      </div>
+
+      <div class="auth-prompt" *ngIf="!(isAuthenticated$ | async)">
+        <p>Please <a routerLink="/login">log in</a> to book tickets for this event.</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="loading" *ngIf="!event">
+  <p>Loading event details...</p>
+</div>

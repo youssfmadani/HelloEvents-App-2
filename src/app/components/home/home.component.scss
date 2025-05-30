@@ -1,0 +1,40 @@
+.home-container {
+  padding: 2rem;
+
+  .hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    
+    .event-card {
+      mat-card-header {
+        margin-bottom: 1rem;
+      }
+      
+      mat-card-content {
+        margin-bottom: 1rem;
+      }
+      
+      mat-card-actions {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+      }
+    }
+  }
+}
